@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<p>Ensayo</p>
+    <rich:panel>
+        <f:facet name="header">
+        Write your own custom rich components with built-in AJAX support
+        </f:facet>
+		<h:outputText value="Panel Body" /> 
+	</rich:panel>
+	<h:form>
+	<h:outputLabel value="Descripción : *" for="descripcion"></h:outputLabel>
+		            <p:inputText id="descripcion" value="#{carroDTO.marca}" required="true"/>
+	    <p:commandButton value="ingresar" id="ajax"  actionListener="#{carroCommand.insertar(carroDTO)}" styleClass="ui-priority-primary" />
+	
+	</h:form>
+</body> 
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+    <rich:panel>
+        <f:facet name="header">
+        Informacion carro
+        </f:facet>
+		<h:outputText value="Panel Body" /> 
+	</rich:panel>
+		<h:form>
+	<h:outputLabel value="placa : " for="placa"></h:outputLabel>
+		            <p:inputText id="placa" value="#{carroDTO.placa}" /><br/> 
+		<br/>         
+	 <h:outputLabel value="modelo : " for="modelo"></h:outputLabel>
+		            <p:inputText id="modelo" value="#{carroDTO.modelo}" /><br/>
+		            <br/>  
+	 <h:outputLabel value="combustible : " for="combustible"></h:outputLabel> 
+		            <p:inputText id="combustible" value="#{carroDTO.combustible}" /><br/> 
+		            <br/> 
+	 <h:outputLabel value="tipo : " for="tipo"></h:outputLabel>
+		            <p:inputText id="tipo" value="#{carroDTO.tipo}" /> <br/>
+		            <br/>  
+	 <h:outputLabel value="marca : " for="marca"></h:outputLabel>
+		            <p:inputText id="marca" value="#{carroDTO.marca}" /><br/> 
+		            <br/> 
+	    <p:commandButton value="ingresar" id="ajax"  actionListener="#{carroCommand.insertar(carroDTO)}" styleClass="ui-priority-primary" />
+	
+	</h:form>
+</body> 
+</html>
