@@ -1,5 +1,8 @@
 package dto;
 
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean
 public class MotoDTO extends VehiculoDTO{
 	private String cilindraje;
 
@@ -9,7 +12,5 @@ public class MotoDTO extends VehiculoDTO{
 
 	public void setCilindraje(String cilindraje) {
 		this.cilindraje = cilindraje;
-	}
-	
-	
+	}	
 }

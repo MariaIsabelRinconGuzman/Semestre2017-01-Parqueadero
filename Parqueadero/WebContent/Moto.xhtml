@@ -10,30 +10,30 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type=""></script>
-	</h:head> 
+</h:head> 	
 <body>
 <div class="container">
-<h1>Ingresar Carro</h1>
+	<h1>Ingresar Moto</h1>
 	<h:form>
 	<h:outputLabel value="Placa : " for="placa"></h:outputLabel>
-		<p:inputText id="placa" value="#{carroDTO.placa}"/><br/>
+		<p:inputText id="placa" value="#{motoDTO.placa}"/><br/>
 		<br/>         
 	 <h:outputLabel value="Modelo : " for="modelo"></h:outputLabel>
-		<p:inputText id="modelo" value="#{carroDTO.modelo}"/><br/>
+		<p:inputText id="modelo" value="#{motoDTO.modelo}"/><br/>
 		<br/>  
 	 <h:outputLabel value="Combustible : " for="combustible"></h:outputLabel> 
-		<p:inputText id="combustible" value="#{carroDTO.combustible}"/><br/> 
+		<p:inputText id="combustible" value="#{motoDTO.combustible}"/><br/> 
 		<br/> 
-	 <h:outputLabel value="Tipo : " for="tipo"></h:outputLabel>
-		<p:inputText id="tipo" value="#{carroDTO.tipo}" /> <br/>
+	 <h:outputLabel value="Cilindraje : " for="cilindraje"></h:outputLabel>
+		<p:inputText id="tipo" value="#{motoDTO.cilindraje}" /> <br/>
 		<br/>  
 	 <h:outputLabel value="Marca : " for="marca"></h:outputLabel>
-		<p:inputText id="marca" value="#{carroDTO.marca}"/><br/> 
+		<p:inputText id="marca" value="#{motoDTO.marca}"/><br/> 
 		<br/> 
 	<h:outputLabel value="Documento Propietario : " for="propietario"></h:outputLabel>
-		<p:inputText id="propietario" value="#{carroDTO.propietario}"/><br/> 
+		<p:inputText id="propietario" value="#{motoDTO.propietario}"/><br/> 
 		<br/> 
-	  <p:commandButton value="Ingresar " id="ingresarCarro"  actionListener="#{carroCommand.insertar(carroDTO)}" styleClass="ui-priority-primary"/>	
+	  <p:commandButton value="Ingresar" id="ingresarMoto"  actionListener="#{motoCommand.insertar(motoDTO)}" styleClass="ui-priority-primary"/>	
 	  <p:growl id="message" showDetail="true" />
 	</h:form>
 </div>

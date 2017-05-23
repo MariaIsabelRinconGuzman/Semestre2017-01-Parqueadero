@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="javascript"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="javascript"></script>
+</h:head> 
+<body>
+<div class="container">
+	<h1>Ingresar Reserva</h1>
+<h:form>
+    <p:growl id="growl" showDetail="true" />
+    <h:outputLabel for="calendar" value="Fecha Reserva: "/>
+	    <p:calendar value="#{reservaCommand.calendar}" pattern="dd/MM/yyyy">
+	    <p:ajax event="dateSelect" listener="#{reservaCommand.onDateSelect}" update="growl" />
+	    </p:calendar><br/><br/>
+	<h:outputLabel for="time" value="Hora Reserva: "/>
+    	<p:calendar id="time" value="#{reservaCommand.hour}" pattern="HH:mm" timeOnly="true"/><br/><br/>
+	<h:outputLabel value="Placa de Vehiculo: " for="placa"></h:outputLabel>
+		<p:inputText id="placa" value="#{reservaDTO.placa}"/><br/><br/>	
+     <p:commandButton value="Reservar" id="reservar"  actionListener="#{reservaCommand.reservar(reservaDTO)}" styleClass="ui-priority-primary"/>
+</h:form>
+</div>
+</body>
+</html>

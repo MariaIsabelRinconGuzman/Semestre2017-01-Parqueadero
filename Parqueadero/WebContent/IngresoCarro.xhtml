@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type=""></script>
+</h:head> 	
+<body>
+<div class="container">
+<h1>Ingresar Carro al Parqueadero</h1>
+<h:form>
+    <p:growl id="growl" showDetail="true" />
+    <h:outputLabel value="Placa de Vehiculo: " for="placa"></h:outputLabel>
+		<p:inputText id="placa" value="#{ingresoDTO.placa}"/><br/><br/>	
+	<h:outputLabel value="Reserva: "></h:outputLabel>	 
+		 <p:commandButton value="Si" id="reservas" oncomplete="PF('pagosDialog').show()" styleClass="ui-priority-primary"/>
+		 <p:commandButton value="No" id="reservan" actionListener="#{ingresoCommand.sinReserva()}" styleClass="ui-priority-primary"/><br/><br/>
+		<p:selectOneRadio id="llaves" value="#{ingresoDTO.llaves}">
+            <f:selectItem itemLabel="Llaves" itemValue="s" />
+        </p:selectOneRadio><br></br>    
+    <p:commandButton value="Ingresar" id="ingresar"  actionListener="#{ingresoCommand.insertarcarro(ingresoDTO)}" styleClass="ui-priority-primary"/>
+    
+    <p:dialog header="Numero de la reserva" widgetVar="pagosDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+		<h:outputLabel value="Reserva: " for="reservasi"/> 
+		<p:inputText id="reservasi" value="#{ingresoCommand.reserva}"/><br/><br/>
+		<p:commandButton value="Aceptar" id="reservarsib" onclick="pagosDialog.hide()" styleClass="ui-priority-primary"/>
+	</p:dialog>
+</h:form>
+</div>
+</body> 
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type=""></script>
+</h:head> 	
+<body>
+<div class="container">
+<h1>Ingresar Propietario</h1> 
+<h:form> 
+	<br/>  
+	<h:outputLabel value="Documento Nuevo Propietario : " for="documento"></h:outputLabel>
+		<p:inputText id="documento" value="#{propietarioDTO.id}"/><br/>
+		<br/>  
+	<h:outputLabel value="Nombre Nuevo Propietario : " for="nombre"></h:outputLabel>
+		<p:inputText id="nombre" value="#{propietarioDTO.nombre}"/><br/>
+		<br/>
+	<h:outputLabel value="Telefono Nuevo Propietario : " for="telefono"></h:outputLabel>
+		<p:inputText id="telefono" value="#{propietarioDTO.telefono}"/><br/>
+		<br/>  
+	<p:commandButton value="Ingresar" id="insertarPropietario"  actionListener="#{propietarioCommand.insertar(propietarioDTO)}" styleClass="ui-priority-primary"/>
+<p:growl id="message" showDetail="true" />
+	</h:form>
+</div>
+</body> 
+</html>

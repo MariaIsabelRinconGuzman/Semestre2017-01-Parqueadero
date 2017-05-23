@@ -1,5 +1,10 @@
 package dto;
 
+import javax.faces.bean.ManagedBean;
+
+import sun.util.calendar.BaseCalendar.Date;
+
+@ManagedBean
 public class ReservaDTO {
 	private String fecha;
 	private String hora;
@@ -22,6 +27,4 @@ public class ReservaDTO {
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
-	
-
 }

@@ -1,26 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/html"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type=""></script>
+</h:head> 	
 <body>
-<p>Ensayo</p>
-    <rich:panel>
-        <f:facet name="header">
-        Write your own custom rich components with built-in AJAX support
-        </f:facet>
-		<h:outputText value="Panel Body" /> 
-	</rich:panel>
-	<h:form>
-	<h:outputLabel value="Descripción : *" for="descripcion"></h:outputLabel>
-		            <p:inputText id="descripcion" value="#{carroDTO.marca}" required="true"/>
-	    <p:commandButton value="ingresar" id="ajax"  actionListener="#{carroCommand.insertar(carroDTO)}" styleClass="ui-priority-primary" />
-	
+<div class="container">
+	<h1>Menu Principal Parqueadero</h1>
+<h:form>
+<div class="col-sm-3">
+	 <p:menu>
+        <p:submenu label="Crear">
+            <p:menuitem value="Crear Carro" actionListener="#{menuPrincipalCommand.crearCarro()}" styleClass="ui-priority-primary"/>
+            <p:menuitem value="Crear Moto" actionListener="#{menuPrincipalCommand.crearMoto()}" styleClass="ui-priority-primary"/>
+            <p:menuitem value="Crear Propietario" actionListener="#{menuPrincipalCommand.ingresarPropietario()}" styleClass="ui-priority-primary"/>
+ </p:submenu>
+ </p:menu>
+ </div>
+<div class="col-sm-3">
+ 	<p:menu>
+	<p:submenu label="Ingresar">
+	<p:menuitem value="Ingresar Moto" actionListener="#{menuPrincipalCommand.ingresarMoto()}" styleClass="ui-priority-primary"/>
+	<p:menuitem value="Ingresar Carro" actionListener="#{menuPrincipalCommand.ingresarCarro()}" styleClass="ui-priority-primary"/>
+	<p:menuitem value="Ingresar Reserva" actionListener="#{menuPrincipalCommand.ingresarReserva()}" styleClass="ui-priority-primary"/>
+</p:submenu>
+</p:menu>
+</div>
+<div class="col-sm-3">
+ 	<p:menu>
+ 	<p:submenu label="Actualizar">
+	<p:menuitem value="Actualizar Propietario" actionListener="#{menuPrincipalCommand.actualizarPropietario()}" styleClass="ui-priority-primary"/>
+	<p:menuitem value="Actualizar Costos" actionListener="#{menuPrincipalCommand.actualizarCostos()}" styleClass="ui-priority-primary"/>
+</p:submenu>
+</p:menu>
+</div>
+<div class="col-sm-3">
+	<p:menu>
+        <p:submenu label="Facturar">
+	<p:menuitem value="Generar Factura" actionListener="#{menuPrincipalCommand.generarFactura()}" styleClass="ui-priority-primary"/>
+</p:submenu>
+</p:menu>
+</div>
 	</h:form>
+	</div>
 </body> 
 </html>
