@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	>
+	
+<h:head>
+</h:head>
+<h:body style="background-color: rgb(224, 247, 255)">
+	<h:form>
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+	</h:form>
+	<h:form id="idForm1">
+		<p:wizard id="wizard">
+			<p:tab id="Usuario">
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel value="Usuario:" />
+					<b:inputText id="nombre_usu" value="#{usuariosDTO.usuNombre}"
+						required="true"
+						requiredMessage="El nombre de usuario ya existe o es invalido" />
+					<p:message for="nombre_usu" />
+					<h:outputLabel value="Contraseña:" />
+					<p:password id="password_usu" value="#{usuariosDTO.usuPassword}"
+						required="true" requiredMessage="Se requiere ingresar clave"
+						match="password_usu2"
+						validatorMessage="Las contraseñas deben ser iguales"
+						feedback="true" promptLabel="Ingrese contraseña"
+						weakLabel="Insegura" goodLabel="Segura" strongLabel="Muy segura" />
+					<p:message for="password_usu" />
+					<h:outputLabel value="Confirma clave" />
+					<p:password id="password_usu2" required="true"
+						requiredMessage="Se requiere ingresar confirmacion clave" />
+					<p:message for="password_usu2" />
+
+				</h:panelGrid>
+			</p:tab>
+			<p:tab id="Aplicaciones">
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel value="Documento:" />
+					<b:inputText id="documento_usu" value="#{usuariosDTO.usuDocumento}" />
+					<p:message for="nombre_usu" />
+					<h:outputLabel value="Descripcion:" />
+					<b:inputText id="descripcion_usu"
+						value="#{usuariosDTO.usuDescripcion}" />
+					<br />
+					<h:outputLabel value="Teléfono:" />
+					<b:inputText id="telefono_usu" value="#{usuariosDTO.usuTelefono}" />
+					<br />
+					<h:outputLabel value="Celular:" />
+					<b:inputText id="celular_usu" value="#{usuariosDTO.usuCelular}" />
+					<br />
+					<h:outputLabel value="Direccion:" />
+					<b:inputText id="direccion_usu" value="#{usuariosDTO.usuDireccion}" />
+					<br />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab id="Mostrar">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Usuario:" />
+					<h:outputLabel value="#{usuariosDTO.usuNombre}" />
+					<h:outputLabel value="Documento:" />
+					<h:outputLabel value="#{usuariosDTO.usuDocumento}" />
+					<h:outputLabel value="Descripcion:" />
+					<h:outputLabel value="#{usuariosDTO.usuDescripcion}" />
+					<h:outputLabel value="Teléfono:" />
+					<h:outputLabel value="#{usuariosDTO.usuTelefono}" />
+					<h:outputLabel value="Celular:" />
+					<h:outputLabel value="#{usuariosDTO.usuCelular}" />
+					<h:outputLabel value="Direccion:" />
+					<h:outputLabel value="#{usuariosDTO.usuDireccion}" />
+					<b:commandButton value="Confirmar" id="boton1" look="success"
+						actionListener="#{usuariosCommand.insertar(usuariosDTO)}"
+						/>
+				</h:panelGrid>
+			</p:tab>
+		</p:wizard>
+
+	</h:form>
+</h:body>
+</html>
