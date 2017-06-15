@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</h:head> 
+<body> 
+<div class="container">
+<h1>Ingresar Costos Anuales</h1>
+<h:form>
+	<h:outputLabel value="Año: " for="anio"></h:outputLabel>
+		<p:inputText id="anio" value="#{costoDTO.anio}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Hora Carro: " for="hora_carro"></h:outputLabel>
+		<p:inputText id="hora_carro" value="#{costoDTO.hora_carro}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Hora Moto: " for="hora_moto"></h:outputLabel>
+		<p:inputText id="hora_moto" value="#{costoDTO.hora_moto}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Lavado Carro: " for="hora_nocturna_carro"></h:outputLabel>
+		<p:inputText id="hora_nocturna_carro" value="#{costoDTO.lavado_carro}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Lavado Moto: " for="hora_nocturna_moto"></h:outputLabel>
+		<p:inputText id="hora_nocturna_moto" value="#{costoDTO.lavado_moto}"/><br/>
+		<br/> 
+		<h:outputLabel value="Costo Dia Carro: " for="dia_carro"></h:outputLabel>
+		<p:inputText id="dia_carro" value="#{costoDTO.dia_carro}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Dia Moto: " for="dia_moto"></h:outputLabel>
+		<p:inputText id="dia_moto" value="#{costoDTO.dia_moto}"/><br/>
+		<br/>   
+		<h:outputLabel value="Costo Semana Carro: " for="semana_carro"></h:outputLabel>
+		<p:inputText id="semana_carro" value="#{costoDTO.semana_carro}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Semana Moto: " for="semana_moto"></h:outputLabel>
+		<p:inputText id="semana_moto" value="#{costoDTO.semana_moto}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Mes Carro: " for="mes_carro"></h:outputLabel>
+		<p:inputText id="mes_carro" value="#{costoDTO.mes_carro}"/><br/>
+		<br/>  
+		<h:outputLabel value="Costo Mes Moto: " for="mes_moto"></h:outputLabel>
+		<p:inputText id="mes_moto" value="#{costoDTO.mes_moto}"/><br/>
+		<br/>
+	<p:commandButton value="Ingresar" id="ingresarCostos"  actionListener="#{costoCommand.insertar(costoDTO)}" styleClass="ui-priority-primary"/>
+	<p:growl id="message" showDetail="true" />
+	</h:form>
+	</div>
+</body> 
+</html>

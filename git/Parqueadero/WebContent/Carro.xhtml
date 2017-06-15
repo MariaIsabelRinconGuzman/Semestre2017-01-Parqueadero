@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</h:head> 
+<body>
+<div class="container">
+<h1>Ingresar Carro</h1>
+	<h:form>
+	<h:outputLabel value="Placa : " for="placa"></h:outputLabel>
+		<p:inputText id="placa" value="#{carroDTO.placa}"/><br/>
+		<br/>         
+	 <h:outputLabel value="Modelo : " for="modelo"></h:outputLabel>
+		<p:inputText id="modelo" value="#{carroDTO.modelo}"/><br/>
+		<br/>  
+	 <h:outputLabel value="Combustible : " for="combustible"></h:outputLabel> 
+		<p:inputText id="combustible" value="#{carroDTO.combustible}"/><br/> 
+		<br/> 
+	 <h:outputLabel value="Tipo : " for="tipo"></h:outputLabel>
+		<p:inputText id="tipo" value="#{carroDTO.tipo}" /> <br/>
+		<br/>  
+	 <h:outputLabel value="Marca : " for="marca"></h:outputLabel>
+		<p:inputText id="marca" value="#{carroDTO.marca}"/><br/> 
+		<br/> 
+	<h:outputLabel value="Documento Propietario : " for="propietario"></h:outputLabel>
+		<p:inputText id="propietario" value="#{carroDTO.propietario}"/><br/> 
+		<br/> 
+	  <p:commandButton value="Ingresar " id="ingresarCarro"  actionListener="#{carroCommand.insertar(carroDTO)}" styleClass="ui-priority-primary"/>	
+	  <p:growl id="message" showDetail="true" />
+	</h:form>
+</div>
+</body> 
+</html>

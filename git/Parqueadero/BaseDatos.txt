@@ -1,0 +1,173 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema parqueadero
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema parqueadero
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `parqueadero` DEFAULT CHARACTER SET utf8 ;
+USE `parqueadero` ;
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`carro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`carro` (
+  `carro_placa` VARCHAR(20) NOT NULL,
+  `carro_modelo` INT(11) NOT NULL,
+  `carro_combustible` VARCHAR(50) NOT NULL,
+  `carro_tipo` VARCHAR(50) NOT NULL,
+  `carro_marca` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`carro_placa`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`costo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`costo` (
+  `costo_hora_carro` DOUBLE NOT NULL,
+  `costo_dia_carro` DOUBLE NOT NULL,
+  `costo_hora_moto` DOUBLE NOT NULL,
+  `costo_dia_moto` DOUBLE NOT NULL,
+  `costo_semana_carro` DOUBLE NOT NULL,
+  `costo_mes_carro` DOUBLE NOT NULL,
+  `costo_mes_moto` DOUBLE NOT NULL,
+  `costo_anio` INT(11) NOT NULL,
+  `costo_semana_moto` DOUBLE NOT NULL,
+  `costo_lavado_carro` DOUBLE NOT NULL,
+  `costo_lavado_moto` DOUBLE NOT NULL,
+  PRIMARY KEY (`costo_anio`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`moto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`moto` (
+  `moto_placa` VARCHAR(20) NOT NULL,
+  `moto_modelo` INT(11) NOT NULL,
+  `moto_cilindraje` INT(11) NOT NULL,
+  `moto_combustible` VARCHAR(50) NOT NULL,
+  `moto_marca` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`moto_placa`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`propietario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`propietario` (
+  `propietario_id` INT(11) NOT NULL,
+  `propietario_nombre` VARCHAR(100) NOT NULL,
+  `propietario_telefono` INT(11) NOT NULL,
+  PRIMARY KEY (`propietario_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`vehiculo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`vehiculo` (
+  `vehiculo_placa` VARCHAR(30) NOT NULL,
+  `carro_placa` VARCHAR(20) NULL DEFAULT NULL,
+  `moto_placa` VARCHAR(20) NULL DEFAULT NULL,
+  `propietario_id` INT(11) NOT NULL,
+  PRIMARY KEY (`vehiculo_placa`),
+  INDEX `IX_Relationship3` (`carro_placa` ASC),
+  INDEX `IX_Relationship4` (`moto_placa` ASC),
+  INDEX `IX_Relationship5` (`propietario_id` ASC),
+  CONSTRAINT `Relationship3`
+    FOREIGN KEY (`carro_placa`)
+    REFERENCES `parqueadero`.`carro` (`carro_placa`),
+  CONSTRAINT `Relationship4`
+    FOREIGN KEY (`moto_placa`)
+    REFERENCES `parqueadero`.`moto` (`moto_placa`),
+  CONSTRAINT `Relationship5`
+    FOREIGN KEY (`propietario_id`)
+    REFERENCES `parqueadero`.`propietario` (`propietario_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`factura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`factura` (
+  `factura_codigo` INT(11) NOT NULL AUTO_INCREMENT,
+  `ingreso_codigo` INT(11) NULL DEFAULT NULL,
+  `costo_anio` INT(11) NOT NULL,
+  `factura_horas` INT(11) NULL DEFAULT NULL,
+  `factura_lavado` CHAR(1) NULL DEFAULT NULL,
+  `factura_cascos` INT(11) NULL DEFAULT NULL,
+  `factura_llaves` CHAR(1) NULL DEFAULT NULL,
+  `factura_hora_inicio` VARCHAR(45) NOT NULL,
+  `factura_hora_fin` VARCHAR(100) NULL DEFAULT NULL,
+  `factura_total` DOUBLE NOT NULL DEFAULT '0',
+  `factura_placa` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`factura_codigo`),
+  INDEX `IX_Relationship12` (`costo_anio` ASC),
+  INDEX `con_vehiculo_idx` (`factura_placa` ASC),
+  CONSTRAINT `Relationship12`
+    FOREIGN KEY (`costo_anio`)
+    REFERENCES `parqueadero`.`costo` (`costo_anio`),
+  CONSTRAINT `con_vehiculo`
+    FOREIGN KEY (`factura_placa`)
+    REFERENCES `parqueadero`.`vehiculo` (`vehiculo_placa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 48
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`ingreso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`ingreso` (
+  `ingreso_codigo` INT(11) NOT NULL AUTO_INCREMENT,
+  `vehiculo_placa` VARCHAR(30) NOT NULL,
+  `reserva_codigo` INT(11) NULL DEFAULT '0',
+  `ingreso_fecha` VARCHAR(30) NOT NULL,
+  `ingreso_hora` VARCHAR(50) NOT NULL,
+  `ingreso_cascos` INT(11) NULL DEFAULT '0',
+  `ingreso_llaves` VARCHAR(45) NULL DEFAULT 'no',
+  PRIMARY KEY (`ingreso_codigo`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 21
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `parqueadero`.`reserva`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `parqueadero`.`reserva` (
+  `reserva_codigo` INT(11) NOT NULL AUTO_INCREMENT,
+  `reserva_fecha` VARCHAR(30) NOT NULL,
+  `vehiculo_placa` VARCHAR(30) NOT NULL,
+  `reserva_hora` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`reserva_codigo`),
+  INDEX `IX_Relationship7` (`vehiculo_placa` ASC),
+  CONSTRAINT `Relationship7`
+    FOREIGN KEY (`vehiculo_placa`)
+    REFERENCES `parqueadero`.`vehiculo` (`vehiculo_placa`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

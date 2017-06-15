@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-07T17:48:49 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30b80b96-241a-4a10-ab9d-6ac5794740f3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cGFycXVlYWRlcm8uZmFjdHVyYSAsMTUsMTUsZDc2NGI1OGYtOWFhZS00ZmNhLWIxN2EtYjdkMmM0&#xA;MTRmNGM2Ow=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT parqueadero.factura.factura_hora_fin,
+	parqueadero.factura.factura_total,
+	parqueadero.factura.factura_placa,
+	parqueadero.factura.factura_codigo,
+	parqueadero.factura.costo_anio,
+	parqueadero.factura.factura_hora_inicio
+FROM parqueadero.factura
+WHERE 
+	 parqueadero.factura.factura_hora_fin LIKE '% Jun 07 %']]>
+	</queryString>
+	<field name="factura_hora_fin" class="java.lang.String"/>
+	<field name="factura_total" class="java.lang.String"/>
+	<field name="factura_placa" class="java.lang.String"/>
+	<field name="factura_codigo" class="java.lang.String"/>
+	<field name="costo_anio" class="java.lang.String"/>
+	<field name="factura_hora_inicio" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="10" width="200" height="42" uuid="be0808e7-ca3b-4cb2-a5dd-93e5d8151238"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Reporte Facturacion Dia ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="9" width="100" height="30" uuid="b1bd8eaa-e9ac-4f98-880a-7e6ce93ebae1"/>
+				<text><![CDATA[Fecha :]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="75" y="9" width="100" height="30" uuid="a3c38a6c-67ce-4ae4-bc95-b4e013dc3d7b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="10" width="100" height="30" uuid="b8218e34-a32c-433c-a9f4-e51ec96759ba"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="10" width="100" height="30" uuid="1e4d0a70-3d8f-4c0a-9e38-709aae22cbfa"/>
+				<text><![CDATA[Placa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="10" width="100" height="30" uuid="ea086386-77bd-403a-bb85-407a53759003"/>
+				<text><![CDATA[Fecha inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="10" width="100" height="30" uuid="2c07be55-e39d-46b7-bac3-bf679a8376db"/>
+				<text><![CDATA[Fecha fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="10" width="100" height="30" uuid="9431e712-24c6-43cc-937b-3e696f8a02cd"/>
+				<text><![CDATA[Anio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="10" width="100" height="30" uuid="bcd6218e-93e8-4363-8aa9-fd86dc354a7b"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="15" width="100" height="30" uuid="99722c57-cc4e-478f-8471-4c0c428e11fa"/>
+				<textFieldExpression><![CDATA[$F{factura_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="13" width="100" height="30" uuid="c31062ce-8f05-4a8c-b2da-02d497368142"/>
+				<textFieldExpression><![CDATA[$F{factura_placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="12" width="100" height="68" uuid="12566032-7156-4903-8e44-47ca1d3fdbf4"/>
+				<textFieldExpression><![CDATA[$F{factura_hora_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="13" width="100" height="67" uuid="6a13cd85-51fc-432b-99fb-b878a49061f3"/>
+				<textFieldExpression><![CDATA[$F{factura_hora_fin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="11" width="100" height="30" uuid="44be726e-d9c3-4f36-a580-378a07b3de99"/>
+				<textFieldExpression><![CDATA[$F{costo_anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="13" width="100" height="30" uuid="10cdb7ab-31f0-41e0-8d30-c036deb6d258"/>
+				<textFieldExpression><![CDATA[$F{factura_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

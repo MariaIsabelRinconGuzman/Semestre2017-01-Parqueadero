@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+ </h:head> 	
+<body>
+<div class="container">
+	<h1 style="width:40%; text-align:center">Salida Vehiculo</h1><br></br>
+<div class="col-sm-5">
+<h:form>
+    <p:growl id="growl" showDetail="true" />
+    <h:outputLabel value="Placa de Vehiculo: " for="placa"/>
+		<p:inputText id="placa" value="#{facturaDTO.placa}"/><br/><br/>	
+		 <p:selectOneRadio id="lavado" value="#{facturaDTO.lavado}">
+            <f:selectItem itemLabel="Lavado" itemValue="s" />
+        </p:selectOneRadio><br></br>
+     <p:commandButton value="Generar Factura" update=":formResult" id="generar" ondblclick="PF('widgetFactura').show()" actionListener="#{facturaCommand.consultar(facturaDTO)}"/>
+</h:form>
+</div>
+<div class="col-sm-7"> 
+<h:form id="formResult">
+<p:panel widgetVar="widgetFactura" header="Factura para el Vehiculo #{facturaDTO.placa}">
+	<p:panelGrid style="width:100%; text-align:center" columns= "2">
+		<h:outputText for="fechainicio" value="Fecha Inicio:"/>
+		<p:inputText id="fechainicio" style="width:50%; text-align:center;" readonly="true" value="#{facturaDTO.fecha_inicio}"/>
+		<h:outputText for="fechafin" value="Fecha Fin:"/>
+		<p:inputText id="fechafin" style="width:50%; text-align:center;" readonly="true" value="#{facturaDTO.fecha_fin}"/>
+		<h:outputText for="horas" value="Horas:"/>
+		<p:inputText id="horas" style="width:50%; text-align:center;" readonly="true" value="#{facturaDTO.horas}"/>
+		<h:outputText for="lavado" value="Lavado:"/>
+		<p:inputText id="lavado" style="width:50%; text-align:center;" readonly="true" value="#{facturaDTO.lavado}"/>
+		<h:outputText for="total" value="Total:"/>
+		<p:inputText id="total" style="width:50%; text-align:center;" readonly="true" value="#{facturaDTO.total}"/>
+	</p:panelGrid>
+</p:panel>
+</h:form>
+<p:commandButton value="Pagar Factura" id="pagar" actionListener="#{facturaCommand.pagar(facturaDTO)}"/>
+</div>
+</div>
+</body> 
+</html>
